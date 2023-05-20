@@ -7,7 +7,7 @@
 <body>
   <div class="container">
     <h1>Contact Me</h1>
-    <form id="contactForm">
+    <form id="contactForm" method="post" action="https://docs.google.com/forms/d/e/1FAIpQLSeq7GsTG2kqEKJoXhV66LnHokngX-uYWxScPNTLCwjUGSvyXA/formResponse">
       <label for="nameInput">Name:</label>
       <input type="text" id="nameInput" required>
       <label for="emailInput">Email:</label>
@@ -23,23 +23,14 @@
     document.getElementById("contactForm").addEventListener("submit", function(event) {
       event.preventDefault();
 
-      var formId = "1FAIpQLSeq7GsTG2kqEKJoXhV66LnHokngX-uYWxScPNTLCwjUGSvyXA";
-      var nameFieldId = "entry.1966017378";
-      var emailFieldId = "entry.1800407363";
-      var messageFieldId = "entry.494399150";
-
-      var name = document.getElementById("nameInput").value;
-      var email = document.getElementById("emailInput").value;
-      var message = document.getElementById("messageInput").value;
-
       var formData = new FormData();
-      formData.append(nameFieldId, name);
-      formData.append(emailFieldId, email);
-      formData.append(messageFieldId, message);
+      formData.append("entry.1966017378", document.getElementById("nameInput").value);
+      formData.append("entry.1800407363", document.getElementById("emailInput").value);
+      formData.append("entry.494399150", document.getElementById("messageInput").value);
 
-      fetch("https://docs.google.com/forms/d/e/" + formId + "/formResponse", {
+      fetch("https://docs.google.com/forms/d/e/1FAIpQLSeq7GsTG2kqEKJoXhV66LnHokngX-uYWxScPNTLCwjUGSvyXA/formResponse", {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
         body: formData
       })
       .then(function(response) {
