@@ -1,207 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Form</title>
-  <style>
-    /* Your CSS styles here */
-    /* Reset default styles */
-    body {
-      margin: 0;
-      padding: 0;
-    }
-  
-    /* Typography */
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #333;
-    }
-  
-    h1,
-    h2,
-    h3 {
-      margin: 0;
-    }
-  
-    h1 {
-      font-size: 28px;
-    }
-  
-    h2 {
-      font-size: 24px;
-    }
-  
-    h3 {
-      font-size: 20px;
-    }
-  
-    /* Header */
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-    }
-  
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
-  
-    nav ul li {
-      margin: 0 10px;
-    }
-  
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px;
-      transition: color 0.3s ease;
-    }
-  
-    nav ul li a:hover {
-      color: #ff9800;
-    }
-  
-    /* Sections */
-    section {
-      padding: 40px 0;
-    }
-  
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-  
-    /* Hero section */
-    #hero {
-      background-color: #f2f2f2;
-      text-align: center;
-      padding: 80px 0;
-    }
-  
-    .hero-content {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-  
-    .hero-content h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-  
-    .hero-content p {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-  
-    .hero-content .btn {
-      background-color: #ff9800;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-  
-    .hero-content .btn:hover {
-      background-color: #f57c00;
-    }
-  
-    /* Lists */
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-  
-    ul li {
-      margin-bottom: 10px;
-    }
-  
-    ul li a {
-      text-decoration: none;
-      color: #333;
-      transition: color 0.3s ease;
-    }
-  
-    ul li a:hover {
-      color: #ff9800;
-    }
-  
-    /* Form */
-    form input,
-    form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-  
-    form button {
-      background-color: #ff9800;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-  
-    form button:hover {
-      background-color: #f57c00;
-    }
-  
-    /* Footer */
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-  
-    footer p {
-      margin: 0;
-    }
-  
-    /* Additional Styles for Form Submission Embed Area */
-    #contact .container {
-      background-color: #f2f2f2;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-  </style>
-  <script>
-    function submitForm() {
-      var form = document.getElementById("contact-form");
-      var formData = new FormData(form);
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://docs.google.com/forms/d/e/1FAIpQLScqX79eH3V4pLg6wEeI54iOILUxXkg3NYjyTzU5w5_jRQ22_w/formResponse", true);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          // Success message or further action
-          console.log("Form submitted successfully.");
-        }
-      };
-      xhr.send(formData);
-    }
-  </script>
+  <title>Patrick's Website</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
         <li><a href="#notes">Notes</a></li>
         <li><a href="#tasks">Tasks</a></li>
         <li><a href="#bookmarks">Bookmarks</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -209,14 +23,9 @@
   <section id="hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Contact Us</h1>
-        <p>Fill out the form below to get in touch with us.</p>
-        <form id="contact-form" onsubmit="event.preventDefault(); submitForm();">
-          <input type="text" name="entry.1966017378" placeholder="Your Name" required><br>
-          <input type="email" name="entry.1800407363" placeholder="Your Email" required><br>
-          <textarea name="entry.494399150" placeholder="Message" required></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
+        <h1>Hello, I'm <span>Patrick</span></h1>
+        <p>Welcome to my personal website. Here you can find tools and resources to enhance your productivity and stay organized.</p>
+        <a href="#contact" class="btn">Contact Me</a>
       </div>
     </div>
   </section>
@@ -224,26 +33,49 @@
   <section id="notes">
     <div class="container">
       <h2>Notes</h2>
-      <!-- Your notes content here -->
+      <ul>
+        <li><a href="#">Note 1</a></li>
+        <li><a href="#">Note 2</a></li>
+        <li><a href="#">Note 3</a></li>
+      </ul>
     </div>
   </section>
 
   <section id="tasks">
     <div class="container">
       <h2>Tasks</h2>
-      <!-- Your tasks content here -->
+      <ul>
+        <li><a href="#">Task 1</a></li>
+        <li><a href="#">Task 2</a></li>
+        <li><a href="#">Task 3</a></li>
+      </ul>
     </div>
   </section>
 
   <section id="bookmarks">
     <div class="container">
       <h2>Bookmarks</h2>
-      <!-- Your bookmarks content here -->
+      <ul>
+        <li><a href="#">Bookmark 1</a></li>
+        <li><a href="#">Bookmark 2</a></li>
+        <li><a href="#">Bookmark 3</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>If you'd like to get in touch with me, please fill out the form below:</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeq7GsTG2kqEKJoXhV66LnHokngX-uYWxScPNTLCwjUGSvyXA/viewform?embedded=true" width="640" height="677" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2023 Your Company. All rights reserved.</p>
+    <div class="container">
+      <p>&copy; 2023 Patrick. All rights reserved.</p>
+    </div>
   </footer>
 </body>
+
 </html>
