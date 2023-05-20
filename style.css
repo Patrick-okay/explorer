@@ -1,11 +1,16 @@
 body {
+  background-color: #212121;
+  color: #ffffff;
   font-family: sans-serif;
-  color: #fff;
-  background-color: #000;
 }
 
 h1 {
   font-size: 2em;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5em;
   margin-top: 0;
 }
 
@@ -14,14 +19,39 @@ p {
 }
 
 a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
 }
 
 a:hover {
-  color: #ddd;
+  text-decoration: underline;
 }
 
-.placeholder {
-  color: #ccc;
+nav {
+  background-color: #333333;
+  margin: 0;
+  padding: 0 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+li a {
+  display: block;
+  padding: 10px 15px;
+}
+
+li a:hover {
+  background-color: #444444;
+}
+
+footer {
+  background-color: #444444;
+  padding: 10px 20px;
+  text-align: center;
 }
