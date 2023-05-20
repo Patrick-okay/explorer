@@ -118,6 +118,10 @@
     <div class="background-figure"></div>
   </div>
   
+  <audio id="spiritualNoise">
+    <source src="spiritual_noise.mp3" type="audio/mpeg"> <!-- Replace 'spiritual_noise.mp3' with your audio file -->
+  </audio>
+  
   <script>
     // Array of Bible quotes
     var bibleQuotes = [
@@ -136,17 +140,32 @@
       // Add more Bible quotes here...
     ];
     
-    // Function to get a random quote
-    function getRandomQuote() {
-      return bibleQuotes[Math.floor(Math.random() * bibleQuotes.length)];
-    }
+    var currentQuoteIndex = 0; // Track the current quote index
     
     // Function to update the quote on the page
     function updateQuote() {
-      var quote = getRandomQuote();
+      var quote = bibleQuotes[currentQuoteIndex];
       document.getElementById("quoteText").textContent = quote.text;
       document.getElementById("quoteReference").textContent = quote.reference;
+      
+      // Increment the current quote index
+      currentQuoteIndex++;
+      if (currentQuoteIndex >= bibleQuotes.length) {
+        currentQuoteIndex = 0; // Reset index if all quotes have been shown
+      }
     }
+    
+    // Play spiritual noise
+    function playSpiritualNoise() {
+      var audio = document.getElementById("spiritualNoise");
+      audio.play();
+    }
+    
+    // Update quote and play spiritual noise every 5 seconds
+    setInterval(function() {
+      updateQuote();
+      playSpiritualNoise();
+    }, 5000);
     
     // Initial quote update
     updateQuote();
