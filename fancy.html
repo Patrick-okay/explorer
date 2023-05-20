@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Impressive Code Showcase</title>
+  <title>Stylish Webpage</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,49 +11,71 @@
     .container {
       width: 800px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 40px;
       background-color: #ffffff;
       border: 1px solid #cccccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
     
     h1 {
       text-align: center;
       color: #333333;
+      text-transform: uppercase;
+      font-size: 32px;
+      margin-bottom: 30px;
     }
     
-    pre {
+    p {
+      color: #666666;
+      line-height: 1.6;
+    }
+    
+    .code {
       background-color: #f8f8f8;
-      padding: 15px;
+      padding: 20px;
       border-radius: 5px;
       overflow-x: auto;
       font-size: 14px;
+      margin-bottom: 30px;
+    }
+    
+    .code span.comment {
+      color: #999999;
+      font-style: italic;
+    }
+    
+    .code span.keyword {
+      color: #007bff;
+      font-weight: bold;
+    }
+    
+    .code span.function {
+      color: #dd4a68;
+    }
+    
+    .code span.variable {
+      color: #555555;
+    }
+    
+    .code span.brace {
+      color: #555555;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Impressive Code Showcase</h1>
+    <h1>Stylish Webpage</h1>
     
-    <pre>
-      <code>
-// An example of an impressive code snippet
-function fibonacci(n) {
-  let fib = [0, 1];
-
-  for (let i = 2; i <= n; i++) {
-    fib[i] = fib[i - 1] + fib[i - 2];
-  }
-
-  return fib[n];
-}
-      </code>
-    </pre>
+    <p>Welcome to my stylish webpage! This page showcases my HTML skills.</p>
     
-    <p>This is an example of an impressive code snippet that calculates the Fibonacci number for a given input.</p>
+    <div class="code">
+      <span class="comment">// An example of HTML code</span><br>
+      <span class="keyword">&lt;h2&gt;</span><span class="variable">Hello, World!</span><span class="keyword">&lt;/h2&gt;</span><br>
+      <span class="keyword">&lt;p&gt;</span><span class="variable">This is a paragraph of text.</span><span class="keyword">&lt;/p&gt;</span><br>
+    </div>
     
-    <p>Feel free to modify the code and test it out!</p>
+    <p>Feel free to explore the rest of the page and enjoy the stylish design!</p>
   </div>
 </body>
 </html>
