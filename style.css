@@ -3,6 +3,7 @@ body {
   color: black;
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -50,31 +51,44 @@ p {
   background-color: blue;
 }
 
+footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+  color: #333333;
+  font-size: 14px;
+}
+
 .dark-mode {
-  background-color: black;
-  color: white;
+  background-color: #212121;
+  color: #ffffff;
 }
 
 .dark-mode a {
-  color: blue;
+  color: #00bcd4;
 }
 
 .dark-mode a:hover {
-  color: red;
+  color: #0088d4;
 }
 
 .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
-  color: white;
+  color: #ffffff;
 }
 
 .dark-mode p {
-  color: white;
+  color: #ffffff;
 }
 
 .dark-mode #sidebar {
-  background-color: #212121;
+  background-color: #333333;
 }
 
 .dark-mode #sidebar a {
-  color: white;
+  color: #ffffff;
+}
+
+.dark-mode footer {
+  background-color: #333333;
+  color: #f1f1f1;
 }
