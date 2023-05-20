@@ -12,7 +12,9 @@ body {
   color: #333;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0;
 }
 
@@ -158,4 +160,12 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+/* Additional Styles for Form Submission Embed Area */
+#contact .container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
