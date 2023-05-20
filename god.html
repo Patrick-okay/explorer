@@ -78,6 +78,8 @@
     ];
 
     let shapes = [];
+    let animationFrameId;
+    let isPlaying = false;
 
     function RandomShape() {
       const numPoints = Math.floor(Math.random() * 4) + 3;
@@ -117,8 +119,6 @@
       }
     }
 
-    generateShapes();
-
     function moveShapes() {
       const maxX = window.innerWidth;
       const maxY = window.innerHeight;
@@ -154,10 +154,10 @@
         shape.setAttribute("fill", generateRandomColor());
       });
 
-      requestAnimationFrame(moveShapes);
+      if (isPlaying) {
+        animationFrameId = requestAnimationFrame(moveShapes);
+      }
     }
-
-    moveShapes();
 
     function showRandomQuote() {
       const quoteDiv = document.querySelector(".quote");
@@ -171,6 +171,8 @@
 
     audioElement.addEventListener("canplay", () => {
       audioElement.play();
+      isPlaying = true;
+      moveShapes();
     });
 
     const playButton = document.getElementById("playButton");
@@ -178,8 +180,12 @@
     playButton.addEventListener("click", () => {
       if (audioElement.paused) {
         audioElement.play();
+        isPlaying = true;
+        moveShapes();
       } else {
         audioElement.pause();
+        isPlaying = false;
+        cancelAnimationFrame(animationFrameId);
       }
     });
   </script>
