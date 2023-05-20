@@ -178,14 +178,30 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
   </style>
+  <script>
+    function submitForm() {
+      var form = document.getElementById("contact-form");
+      var formData = new FormData(form);
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://docs.google.com/forms/d/e/1FAIpQLScqX79eH3V4pLg6wEeI54iOILUxXkg3NYjyTzU5w5_jRQ22_w/formResponse", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Success message or further action
+          console.log("Form submitted successfully.");
+        }
+      };
+      xhr.send(formData);
+    }
+  </script>
 </head>
 <body>
   <header>
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#tasks">Tasks</a></li>
+        <li><a href="#bookmarks">Bookmarks</a></li>
       </ul>
     </nav>
   </header>
@@ -195,28 +211,34 @@
       <div class="hero-content">
         <h1>Contact Us</h1>
         <p>Fill out the form below to get in touch with us.</p>
+        <form id="contact-form" onsubmit="event.preventDefault(); submitForm();">
+          <input type="text" name="entry.1966017378" placeholder="Your Name" required><br>
+          <input type="email" name="entry.1800407363" placeholder="Your Email" required><br>
+          <textarea name="entry.494399150" placeholder="Message" required></textarea><br>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="notes">
     <div class="container">
-      <form action="https://docs.google.com/forms/d/e/1FAIpQLSfKGiHg9M2h_JPrpkkhVBTkxZHd7VaVWy2uW0vPt79zoe-9HA/formResponse" method="POST" target="hidden_iframe">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="entry.1966017378" placeholder="Enter your name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="entry.1800407363" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="entry.494399150" placeholder="Enter your message" required></textarea>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      <iframe name="hidden_iframe" style="display:none;"></iframe>
+      <h2>Notes</h2>
+      <!-- Your notes content here -->
+    </div>
+  </section>
+
+  <section id="tasks">
+    <div class="container">
+      <h2>Tasks</h2>
+      <!-- Your tasks content here -->
+    </div>
+  </section>
+
+  <section id="bookmarks">
+    <div class="container">
+      <h2>Bookmarks</h2>
+      <!-- Your bookmarks content here -->
     </div>
   </section>
 
