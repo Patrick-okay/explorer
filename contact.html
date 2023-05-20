@@ -19,5 +19,47 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var formId = "1FAIpQLSeq7GsTG2kqEKJoXhV66LnHokngX-uYWxScPNTLCwjUGSvyXA";
+      var nameFieldId = "entry.1966017378";
+      var emailFieldId = "entry.1800407363";
+      var messageFieldId = "entry.494399150";
+
+      var name = document.getElementById("nameInput").value;
+      var email = document.getElementById("emailInput").value;
+      var message = document.getElementById("messageInput").value;
+
+      var formData = new FormData();
+      formData.append(nameFieldId, name);
+      formData.append(emailFieldId, email);
+      formData.append(messageFieldId, message);
+
+      fetch("https://docs.google.com/forms/d/e/" + formId + "/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      })
+      .then(function(response) {
+        if (response.ok) {
+          // Clear form fields after submission
+          document.getElementById("nameInput").value = "";
+          document.getElementById("emailInput").value = "";
+          document.getElementById("messageInput").value = "";
+
+          // Show success message or redirect to a thank-you page
+          alert("Form submitted successfully!");
+        } else {
+          throw new Error("Error submitting form.");
+        }
+      })
+      .catch(function(error) {
+        // Handle errors here
+        console.error("Error submitting form:", error);
+      });
+    });
+  </script>
 </body>
 </html>
