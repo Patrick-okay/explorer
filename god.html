@@ -58,7 +58,7 @@
       left: -100px;
       width: 200px;
       height: 200px;
-      background-image: url('figure.png'); /* Replace 'figure.png' with your image file */
+      background-color: #666666;
       animation: walk 6s linear infinite;
     }
     
@@ -118,57 +118,24 @@
     <div class="background-figure"></div>
   </div>
   
-  <audio id="spiritualNoise">
-    <source src="spiritual_noise.mp3" type="audio/mpeg"> <!-- Replace 'spiritual_noise.mp3' with your audio file -->
-  </audio>
-  
   <script>
-    // Array of Bible quotes
-    var bibleQuotes = [
-      {
-        text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
-        reference: "John 3:16"
-      },
-      {
-        text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
-        reference: "Proverbs 3:5-6"
-      },
-      {
-        text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
-        reference: "Philippians 4:6"
+    // Computer-generated noises
+    function generateNoise(duration) {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const bufferSize = audioContext.sampleRate * duration;
+      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
       }
-      // Add more Bible quotes here...
-    ];
-    
-    var currentQuoteIndex = 0; // Track the current quote index
-    
-    // Function to update the quote on the page
-    function updateQuote() {
-      var quote = bibleQuotes[currentQuoteIndex];
-      document.getElementById("quoteText").textContent = quote.text;
-      document.getElementById("quoteReference").textContent = quote.reference;
-      
-      // Increment the current quote index
-      currentQuoteIndex++;
-      if (currentQuoteIndex >= bibleQuotes.length) {
-        currentQuoteIndex = 0; // Reset index if all quotes have been shown
-      }
+      const source = audioContext.createBufferSource();
+      source.buffer = buffer;
+      source.connect(audioContext.destination);
+      source.start();
     }
     
-    // Play spiritual noise
-    function playSpiritualNoise() {
-      var audio = document.getElementById("spiritualNoise");
-      audio.play();
-    }
-    
-    // Update quote and play spiritual noise every 5 seconds
-    setInterval(function() {
-      updateQuote();
-      playSpiritualNoise();
-    }, 5000);
-    
-    // Initial quote update
-    updateQuote();
+    // Generate noise on page load
+    generateNoise(1);
   </script>
 </body>
 </html>
