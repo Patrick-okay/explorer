@@ -5,50 +5,24 @@ body {
   background-color: black;
 }
 
-h1 {
-  font-size: 24px;
-  margin-top: 0;
-}
-
-h2 {
-  font-size: 18px;
-}
-
-p {
-  margin-bottom: 10px;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #ccc;
+main {
+  background-color: #333333;
 }
 
 nav {
-  float: left;
-  width: 200px;
-  margin-right: 20px;
+  background-color: #000000;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111111;
+  }
 
-li {
-  margin-bottom: 10px;
-}
+  main {
+    background-color: #222222;
+  }
 
-a:hover {
-  background-color: #ccc;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  nav {
+    background-color: #444444;
+  }
 }
