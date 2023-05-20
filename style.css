@@ -1,57 +1,53 @@
 body {
-  background-color: #212121;
-  color: #ffffff;
   font-family: sans-serif;
+  font-size: 16px;
+  color: white;
+  background-color: black;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 24px;
   margin-top: 0;
 }
 
 h2 {
-  font-size: 1.5em;
-  margin-top: 0;
+  font-size: 18px;
 }
 
 p {
-  margin-bottom: 1em;
+  margin-bottom: 10px;
 }
 
 a {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #ccc;
 }
 
 nav {
-  background-color: #333333;
-  margin: 0;
-  padding: 0 20px;
+  float: left;
+  width: 200px;
+  margin-right: 20px;
 }
 
 ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 li {
-  margin-bottom: 0.5em;
+  margin-bottom: 10px;
 }
 
-li a {
-  display: block;
-  padding: 10px 15px;
-}
-
-li a:hover {
-  background-color: #444444;
+a:hover {
+  background-color: #ccc;
 }
 
 footer {
-  background-color: #444444;
-  padding: 10px 20px;
   text-align: center;
+  margin-top: 20px;
 }
