@@ -86,3 +86,30 @@ footer {
   text-align: center;
   font-size: 14px;
 }
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.about-me {
+  text-align: justify;
+}
+
+.services ul {
+  padding-left: 20px;
+}
+
+.contact p {
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  
+  section {
+    flex-basis: 100%;
+  }
+}
