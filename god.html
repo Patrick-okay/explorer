@@ -4,7 +4,7 @@
   <title>Complex Webpage with Animated Art</title>
   <style>
     body {
-      background-color: #f4f4f4;
+      background-color: #000000;
       margin: 0;
       overflow: hidden;
     }
@@ -13,9 +13,6 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     
     .art-svg {
@@ -24,140 +21,66 @@
     }
     
     polygon {
-      fill: #ffcc00;
-      stroke: #333333;
+      stroke: #ffffff;
       stroke-width: 1px;
-      transform-origin: center;
-      animation: pulse 3s linear infinite alternate;
+      animation: move 15s linear infinite alternate;
     }
     
-    .quote-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-family: Arial, sans-serif;
-      color: #333333;
-    }
-    
-    .quote-text {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    
-    .quote-reference {
-      font-size: 14px;
-      font-style: italic;
-    }
-    
-    @keyframes pulse {
+    @keyframes move {
       0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
+        transform: translate(0, 0);
       }
       100% {
-        transform: scale(1);
+        transform: translate(calc(100vw - 100%), calc(100vh - 100%));
       }
     }
   </style>
 </head>
 <body>
   <div class="art-container">
-    <svg class="art-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" id="artSvg">
+    <svg class="art-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" id="artSvg">
       <!-- Shapes will be dynamically added here -->
     </svg>
-    
-    <div class="quote-container">
-      <div class="quote-text" id="quoteText"></div>
-      <div class="quote-reference" id="quoteReference"></div>
-    </div>
   </div>
-  
+
   <audio id="audioElement" controls autoplay>
     <source src="https://archive.org/details/Classical_Sampler-9615/Kevin_MacLeod_-_Gymnopedie_No_1.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
-  
+
   <script>
-    // Bible quotes
-    const bibleQuotes = [
-      {
-        text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. - John 3:16",
-        reference: "John 3:16"
-      },
-      {
-        text: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight. - Proverbs 3:5-6",
-        reference: "Proverbs 3:5-6"
-      },
-      {
-        text: "I can do all this through him who gives me strength. - Philippians 4:13",
-        reference: "Philippians 4:13"
-      }
-    ];
-    
-    // Generate a random shape
-    function generateShape() {
-      const sides = Math.floor(Math.random() * 5) + 3; // Random number of sides (3 to 7)
-      const radius = Math.floor(Math.random() * 100) + 50; // Random radius (50 to 150)
-      const angle = (Math.PI * 2) / sides; // Angle between each side
+    function generateRandomShape() {
+      const numPoints = Math.floor(Math.random() * 4) + 3;
+      const points = [];
       
-      let points = '';
-      for (let i = 0; i < sides; i++) {
-        const x = radius * Math.cos(angle * i);
-        const y = radius * Math.sin(angle * i);
-        points += `${x},${y} `;
+      for (let i = 0; i < numPoints; i++) {
+        const x = Math.floor(Math.random() * 100);
+        const y = Math.floor(Math.random() * 100);
+        points.push(`${x},${y}`);
       }
       
-      return points;
+      return points.join(" ");
     }
     
-    // Generate a random color
-    function generateColor() {
-      const letters = '0123456789ABCDEF';
-      let color = '#';
-      for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
+    function generateRandomColor() {
+      const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
       return color;
     }
     
-    // Bible quotes cycling
-    const quoteText = document.getElementById("quoteText");
-    const quoteReference = document.getElementById("quoteReference");
-    let currentQuoteIndex = 0;
-    
-    function cycleQuotes() {
-      const currentQuote = bibleQuotes[currentQuoteIndex];
-      quoteText.textContent = currentQuote.text;
-      quoteReference.textContent = currentQuote.reference;
-      
-      currentQuoteIndex = (currentQuoteIndex + 1) % bibleQuotes.length;
-    }
-    
-    // Update the shape and color of the art
-    function updateArt() {
+    function generateShapes() {
       const artSvg = document.getElementById("artSvg");
-      artSvg.innerHTML = ''; // Clear existing shapes
+      artSvg.innerHTML = "";
       
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 100; i++) {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-        shape.setAttribute("points", generateShape());
-        shape.setAttribute("fill", generateColor());
-        shape.setAttribute("stroke", "#333333");
-        shape.setAttribute("stroke-width", "1px");
-        shape.style.animationDuration = Math.floor(Math.random() * 6) + 4 + "s"; // Random animation duration (4 to 10 seconds)
-        shape.style.animationDelay = Math.floor(Math.random() * 2) + "s"; // Random animation delay (0 to 2 seconds)
+        shape.setAttribute("points", generateRandomShape());
+        shape.setAttribute("fill", generateRandomColor());
         
         artSvg.appendChild(shape);
       }
     }
     
-    cycleQuotes();
-    setInterval(cycleQuotes, 5000);
-    setInterval(updateArt, 8000);
+    generateShapes();
   </script>
 </body>
 </html>
