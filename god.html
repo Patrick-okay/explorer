@@ -10,55 +10,33 @@
       color: #ffffff;
       font-family: Arial, sans-serif;
     }
-    
+
     .art-container {
       position: relative;
       width: 100%;
       height: 100vh;
     }
-    
+
     .art-svg {
       width: 100%;
       height: 100%;
     }
-    
+
     polygon {
       stroke: #ffffff;
       stroke-width: 1px;
-      animation: move 5s linear infinite;
+      animation: oscillate 5s infinite alternate;
     }
-    
-    @keyframes move {
+
+    @keyframes oscillate {
       0% {
-        transform: translate(0, 0);
-      }
-      100% {
-        transform: translate(calc(100% - 100px), calc(100% - 100px));
-      }
-    }
-    
-    .quote-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      width: 80%;
-    }
-    
-    .quote {
-      font-size: 24px;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeInOut 5s linear infinite;
-    }
-    
-    @keyframes fadeInOut {
-      0%, 100% {
-        opacity: 0;
+        transform: scale(1);
       }
       50% {
-        opacity: 1;
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
       }
     }
   </style>
@@ -71,79 +49,66 @@
   </div>
 
   <div class="quote-container">
-    <div class="quote" id="quote1">For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. - John 3:16</div>
-    <div class="quote" id="quote2">Trust in the LORD with all your heart, and do not lean on your own understanding. - Proverbs 3:5</div>
-    <div class="quote" id="quote3">The LORD is my shepherd; I shall not want. - Psalm 23:1</div>
+    <div class="quote">
+      <!-- Bible quotes will be dynamically added here -->
+    </div>
   </div>
 
-  <audio id="audioElement" controls autoplay preload="auto">
-    <source src="https://archive.org/details/Classical_Sampler-9615/Kevin_MacLeod_-_Gymnopedie_No_1.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
+  <div class="audio-bar">
+    <audio id="audioElement" preload="auto">
+      <source src="https://archive.org/details/Classical_Sampler-9615/Kevin_MacLeod_-_Gymnopedie_No_1.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+    <button id="playButton">Play</button>
+  </div>
 
   <script>
-    const quotes = document.querySelectorAll(".quote");
-    let currentQuoteIndex = 0;
+    const shapes = [];
+    const quotes = [
+      "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. - John 3:16",
+      "Trust in the LORD with all your heart, and do not lean on your own understanding. - Proverbs 3:5",
+      "Be strong and courageous. Do not fear or be in dread of them, for it is the LORD your God who goes with you. He will not leave you or forsake you. - Deuteronomy 31:6",
+      "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint. - Isaiah 40:31"
+    ];
 
-    function cycleQuotes() {
-      quotes[currentQuoteIndex].style.opacity = 0;
-
-      currentQuoteIndex++;
-      if (currentQuoteIndex >= quotes.length) {
-        currentQuoteIndex = 0;
-      }
-
-      quotes[currentQuoteIndex].style.opacity = 1;
-    }
-
-    setInterval(cycleQuotes, 5000);
-  </script>
-
-  <script>
     function generateRandomShape() {
       const numPoints = Math.floor(Math.random() * 4) + 3;
       const points = [];
-      
+
       for (let i = 0; i < numPoints; i++) {
         const x = Math.floor(Math.random() * 100);
         const y = Math.floor(Math.random() * 100);
         points.push(`${x},${y}`);
       }
-      
+
       return points.join(" ");
     }
-    
+
     function generateRandomColor() {
       const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
       return color;
     }
-    
+
     function generateShapes() {
       const artSvg = document.getElementById("artSvg");
       artSvg.innerHTML = "";
-      
+
       for (let i = 0; i < 100; i++) {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
         shape.setAttribute("points", generateRandomShape());
         shape.setAttribute("fill", generateRandomColor());
-        
+
         artSvg.appendChild(shape);
+        shapes.push(shape);
       }
     }
-    
-    generateShapes();
 
-    const shapes = document.querySelectorAll("polygon");
-    const containerWidth = document.querySelector(".art-container").offsetWidth;
-    const containerHeight = document.querySelector(".art-container").offsetHeight;
+    generateShapes();
 
     function moveShapes() {
       shapes.forEach((shape) => {
-        const shapeWidth = shape.getBBox().width;
-        const shapeHeight = shape.getBBox().height;
-
-        const maxX = containerWidth - shapeWidth;
-        const maxY = containerHeight - shapeHeight;
+        const maxX = window.innerWidth - shape.getBBox().width;
+        const maxY = window.innerHeight - shape.getBBox().height;
 
         let currentX = parseFloat(shape.getAttribute("data-x")) || 0;
         let currentY = parseFloat(shape.getAttribute("data-y")) || 0;
@@ -173,6 +138,35 @@
     }
 
     moveShapes();
+
+    function cycleQuotes() {
+      const quoteElement = document.querySelector(".quote");
+      let currentIndex = 0;
+
+      setInterval(() => {
+        quoteElement.innerHTML = quotes[currentIndex];
+
+        currentIndex++;
+        if (currentIndex >= quotes.length) {
+          currentIndex = 0;
+        }
+      }, 5000);
+    }
+
+    cycleQuotes();
+
+    const audioElement = document.getElementById("audioElement");
+    const playButton = document.getElementById("playButton");
+
+    playButton.addEventListener("click", function() {
+      if (audioElement.paused) {
+        audioElement.play();
+        playButton.innerText = "Pause";
+      } else {
+        audioElement.pause();
+        playButton.innerText = "Play";
+      }
+    });
   </script>
 </body>
 </html>
