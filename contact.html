@@ -42,6 +42,7 @@
 
           // Show success message or redirect to a thank-you page
           alert("Your message has been sent!");
+          window.location.href = "thank-you.html";
         } else {
           throw new Error("Error submitting form.");
         }
