@@ -1,71 +1,88 @@
+/* style.css */
+
 body {
-    background-color: #f2f2f2;
-    color: #333;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
+.dark-mode {
+  background-color: #333;
+  color: #f2f2f2;
 }
 
-.sidebar {
-    background-color: #333;
-    color: #fff;
-    width: 200px;
-    padding: 20px;
-    box-sizing: border-box;
+nav {
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar li {
-    margin-bottom: 10px;
+nav li {
+  margin-bottom: 10px;
 }
 
-.sidebar a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+nav a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.sidebar a:hover {
-    color: #ccc;
+nav a:hover {
+  text-decoration: underline;
 }
 
-.content {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+  margin: 0;
+  font-size: 28px;
+}
+
+main {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 p {
-    font-size: 16px;
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
-/* Dark mode styles */
-.dark-mode {
-    background-color: #333;
-    color: #fff;
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
-.dark-mode a {
-    color: #fff;
+footer p {
+  margin: 0;
 }
 
-.dark-mode a:hover {
-    color: #ccc;
+button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #333;
+  color: #fff;
 }
