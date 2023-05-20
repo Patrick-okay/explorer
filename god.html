@@ -114,5 +114,60 @@
     
     <div class="background-figure"></div>
   </div>
+  
+  <script>
+    // Bible quotes
+    const bibleQuotes = [
+      {
+        text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. - John 3:16",
+        reference: "John 3:16"
+      },
+      {
+        text: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight. - Proverbs 3:5-6",
+        reference: "Proverbs 3:5-6"
+      },
+      {
+        text: "I can do all this through him who gives me strength. - Philippians 4:13",
+        reference: "Philippians 4:13"
+      }
+    ];
+    
+    // Computer-generated noises
+    function generateNoise(duration) {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const bufferSize = audioContext.sampleRate * duration;
+      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      const source = audioContext.createBufferSource();
+      source.buffer = buffer;
+      source.connect(audioContext.destination);
+      source.start();
+    }
+    
+    // Generate noise on page load
+    generateNoise(1);
+    
+    // Bible quotes cycling
+    const quoteText = document.getElementById("quoteText");
+    const quoteReference = document.getElementById("quoteReference");
+    let currentQuoteIndex = 0;
+    
+    function cycleQuotes() {
+      const currentQuote = bibleQuotes[currentQuoteIndex];
+      quoteText.textContent = currentQuote.text;
+      quoteReference.textContent = currentQuote.reference;
+      
+      currentQuoteIndex++;
+      if (currentQuoteIndex >= bibleQuotes.length) {
+        currentQuoteIndex = 0;
+      }
+    }
+    
+    cycleQuotes();
+    setInterval(cycleQuotes, 5000);
+  </script>
 </body>
 </html>
