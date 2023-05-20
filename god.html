@@ -19,17 +19,16 @@
     }
     
     .art-svg {
-      width: 500px;
-      height: 500px;
-      animation: spin-pulse 6s linear infinite;
+      width: 100%;
+      height: 100%;
     }
     
     polygon {
       fill: #ffcc00;
       stroke: #333333;
       stroke-width: 1px;
-      animation: pulse 3s linear infinite alternate;
       transform-origin: center;
+      animation: pulse 3s linear infinite alternate;
     }
     
     .quote-container {
@@ -62,27 +61,15 @@
       animation: walk 6s linear infinite;
     }
     
-    @keyframes spin-pulse {
-      0% {
-        transform: rotate(0deg) scale(1);
-      }
-      50% {
-        transform: rotate(180deg) scale(0.8);
-      }
-      100% {
-        transform: rotate(360deg) scale(1);
-      }
-    }
-    
     @keyframes pulse {
       0% {
-        fill: #ffcc00;
+        transform: scale(1);
       }
       50% {
-        fill: #dd4a68;
+        transform: scale(1.2);
       }
       100% {
-        fill: #ffcc00;
+        transform: scale(1);
       }
     }
     
@@ -133,7 +120,7 @@
     // Generate a random shape
     function generateShape() {
       const sides = Math.floor(Math.random() * 5) + 3; // Random number of sides (3 to 7)
-      const radius = Math.floor(Math.random() * 50) + 20; // Random radius (20 to 70)
+      const radius = Math.floor(Math.random() * 100) + 50; // Random radius (50 to 150)
       const angle = (Math.PI * 2) / sides; // Angle between each side
       
       let points = '';
@@ -174,7 +161,7 @@
       const artSvg = document.getElementById("artSvg");
       artSvg.innerHTML = ''; // Clear existing shapes
       
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 30; i++) {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
         shape.setAttribute("points", generateShape());
         shape.setAttribute("fill", generateColor());
