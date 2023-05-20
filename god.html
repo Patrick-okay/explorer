@@ -51,16 +51,6 @@
       font-style: italic;
     }
     
-    .background-figure {
-      position: absolute;
-      top: calc(50% - 100px);
-      left: -100px;
-      width: 200px;
-      height: 200px;
-      background-color: #666666;
-      animation: walk 6s linear infinite;
-    }
-    
     @keyframes pulse {
       0% {
         transform: scale(1);
@@ -70,18 +60,6 @@
       }
       100% {
         transform: scale(1);
-      }
-    }
-    
-    @keyframes walk {
-      0% {
-        transform: translateX(-100px);
-      }
-      50% {
-        transform: translateX(calc(100% - 100px));
-      }
-      100% {
-        transform: translateX(-100px);
       }
     }
   </style>
@@ -96,9 +74,12 @@
       <div class="quote-text" id="quoteText"></div>
       <div class="quote-reference" id="quoteReference"></div>
     </div>
-    
-    <div class="background-figure"></div>
   </div>
+  
+  <audio id="audioElement" controls autoplay>
+    <source src="https://archive.org/details/Classical_Sampler-9615/Kevin_MacLeod_-_Gymnopedie_No_1.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
   
   <script>
     // Bible quotes
