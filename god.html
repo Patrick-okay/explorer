@@ -25,7 +25,8 @@
     polygon {
       stroke: #ffffff;
       stroke-width: 1px;
-      animation: oscillate 5s infinite alternate;
+      animation: oscillate 6s infinite alternate;
+      transform-origin: center;
     }
 
     @keyframes oscillate {
@@ -38,6 +39,39 @@
       100% {
         transform: scale(1);
       }
+    }
+
+    .quote-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .quote {
+      font-size: 24px;
+    }
+
+    .audio-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background-color: #333333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #playButton {
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -85,8 +119,11 @@
     }
 
     function generateRandomColor() {
-      const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-      return color;
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+
+      return `rgb(${r}, ${g}, ${b})`;
     }
 
     function generateShapes() {
@@ -113,20 +150,20 @@
         let currentX = parseFloat(shape.getAttribute("data-x")) || 0;
         let currentY = parseFloat(shape.getAttribute("data-y")) || 0;
 
-        const directionX = parseFloat(shape.getAttribute("data-direction-x")) || 1;
-        const directionY = parseFloat(shape.getAttribute("data-direction-y")) || 1;
+        const directionX = parseFloat(shape.getAttribute("data-direction-x")) || Math.random() > 0.5 ? 1 : -1;
+        const directionY = parseFloat(shape.getAttribute("data-direction-y")) || Math.random() > 0.5 ? 1 : -1;
 
-        currentX += 1 * directionX;
-        currentY += 1 * directionY;
+        currentX += 0.5 * directionX;
+        currentY += 0.5 * directionY;
 
         if (currentX > maxX || currentX < 0) {
           shape.setAttribute("data-direction-x", directionX * -1);
-          currentX += 1 * directionX;
+          currentX += 0.5 * directionX;
         }
 
         if (currentY > maxY || currentY < 0) {
           shape.setAttribute("data-direction-y", directionY * -1);
-          currentY += 1 * directionY;
+          currentY += 0.5 * directionY;
         }
 
         shape.setAttribute("data-x", currentX);
