@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Complex Webpage with Animated Art and Bible Quotes</title>
+  <title>Complex Webpage with Animated Art</title>
   <style>
     body {
       background-color: #f4f4f4;
@@ -10,6 +10,7 @@
     }
     
     .art-container {
+      position: relative;
       width: 100%;
       height: 100vh;
       display: flex;
@@ -28,6 +29,7 @@
       stroke: #333333;
       stroke-width: 1px;
       animation: pulse 3s linear infinite alternate;
+      transform-origin: center;
     }
     
     .quote-container {
@@ -50,6 +52,16 @@
       font-style: italic;
     }
     
+    .background-figure {
+      position: absolute;
+      top: calc(50% - 100px);
+      left: -100px;
+      width: 200px;
+      height: 200px;
+      background-image: url('figure.png'); /* Replace 'figure.png' with your image file */
+      animation: walk 6s linear infinite;
+    }
+    
     @keyframes spin-pulse {
       0% {
         transform: rotate(0deg);
@@ -62,12 +74,27 @@
     @keyframes pulse {
       0% {
         fill: #ffcc00;
+        transform: scale(1);
       }
       50% {
         fill: #dd4a68;
+        transform: scale(1.2);
       }
       100% {
         fill: #ffcc00;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes walk {
+      0% {
+        transform: translateX(-100px);
+      }
+      50% {
+        transform: translateX(calc(100% - 100px));
+      }
+      100% {
+        transform: translateX(-100px);
       }
     }
   </style>
@@ -87,6 +114,8 @@
       <div class="quote-text" id="quoteText"></div>
       <div class="quote-reference" id="quoteReference"></div>
     </div>
+    
+    <div class="background-figure"></div>
   </div>
   
   <script>
@@ -103,3 +132,24 @@
       {
         text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
         reference: "Philippians 4:6"
+      }
+      // Add more Bible quotes here...
+    ];
+    
+    // Function to get a random quote
+    function getRandomQuote() {
+      return bibleQuotes[Math.floor(Math.random() * bibleQuotes.length)];
+    }
+    
+    // Function to update the quote on the page
+    function updateQuote() {
+      var quote = getRandomQuote();
+      document.getElementById("quoteText").textContent = quote.text;
+      document.getElementById("quoteReference").textContent = quote.reference;
+    }
+    
+    // Initial quote update
+    updateQuote();
+  </script>
+</body>
+</html>
