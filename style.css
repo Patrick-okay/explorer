@@ -1,24 +1,25 @@
 body {
-  background-color: #212121;
-  color: #ffffff;
+  background-color: white;
+  color: black;
   margin: 0;
   padding: 0;
 }
 
 a {
-  color: #00bcd4;
+  color: blue;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0088d4;
+  color: red;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #ffffff;
+  color: black;
 }
 
 p {
-  color: #ffffff;
+  color: black;
 }
 
 .container {
@@ -32,27 +33,48 @@ p {
   top: 0;
   left: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: #333333;
   height: 100%;
   overflow: auto;
+  transition: background-color 0.3s ease;
 }
 
 #sidebar a {
   display: block;
-  color: black;
+  color: white;
   padding: 16px;
   text-decoration: none;
 }
 
 #sidebar a:hover {
-  background-color: #04AA6D;
+  background-color: blue;
+}
+
+.dark-mode {
+  background-color: black;
   color: white;
 }
 
-footer {
-  background-color: #f1f1f1;
-  padding: 10px;
-  text-align: center;
-  color: #333333;
-  font-size: 14px;
+.dark-mode a {
+  color: blue;
+}
+
+.dark-mode a:hover {
+  color: red;
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+  color: white;
+}
+
+.dark-mode p {
+  color: white;
+}
+
+.dark-mode #sidebar {
+  background-color: #212121;
+}
+
+.dark-mode #sidebar a {
+  color: white;
 }
