@@ -64,25 +64,25 @@
     
     @keyframes spin-pulse {
       0% {
-        transform: rotate(0deg);
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        transform: rotate(180deg) scale(0.8);
       }
       100% {
-        transform: rotate(360deg);
+        transform: rotate(360deg) scale(1);
       }
     }
     
     @keyframes pulse {
       0% {
         fill: #ffcc00;
-        transform: scale(1);
       }
       50% {
         fill: #dd4a68;
-        transform: scale(1.2);
       }
       100% {
         fill: #ffcc00;
-        transform: scale(1);
       }
     }
     
@@ -103,11 +103,8 @@
   <div class="art-container">
     <svg class="art-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <polygon points="250,10 20,200 90,410 410,410 480,200" />
-      <polygon points="100,100 200,100 150,200" />
-      <polygon points="350,100 450,100 400,200" />
-      <polygon points="150,200 250,200 200,300" />
-      <polygon points="300,200 400,200 350,300" />
-      <polygon points="200,300 300,300 250,400" />
+      <ellipse cx="250" cy="250" rx="100" ry="150" />
+      <rect x="50" y="50" width="100" height="100" />
     </svg>
     
     <div class="quote-container">
@@ -117,25 +114,5 @@
     
     <div class="background-figure"></div>
   </div>
-  
-  <script>
-    // Computer-generated noises
-    function generateNoise(duration) {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const bufferSize = audioContext.sampleRate * duration;
-      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
-      }
-      const source = audioContext.createBufferSource();
-      source.buffer = buffer;
-      source.connect(audioContext.destination);
-      source.start();
-    }
-    
-    // Generate noise on page load
-    generateNoise(1);
-  </script>
 </body>
 </html>
