@@ -8,6 +8,7 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
+      background-color: black;
     }
 
     #artSvg {
@@ -107,7 +108,7 @@
       shapes.forEach(shape => artSvg.removeChild(shape));
       shapes = [];
 
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 100; i++) {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
         shape.setAttribute("points", RandomShape());
         shape.setAttribute("fill", generateRandomColor());
@@ -168,6 +169,11 @@
     showRandomQuote();
 
     const audioElement = document.getElementById("audioElement");
+
+    audioElement.addEventListener("canplay", () => {
+      audioElement.play();
+    });
+
     const playButton = document.getElementById("playButton");
 
     playButton.addEventListener("click", () => {
