@@ -7,6 +7,8 @@
       background-color: #000000;
       margin: 0;
       overflow: hidden;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
     }
     
     .art-container {
@@ -23,7 +25,7 @@
     polygon {
       stroke: #ffffff;
       stroke-width: 1px;
-      animation: move 15s linear infinite alternate;
+      animation: move 5s linear infinite;
     }
     
     @keyframes move {
@@ -31,7 +33,32 @@
         transform: translate(0, 0);
       }
       100% {
-        transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+        transform: translate(calc(100% - 100px), calc(100% - 100px));
+      }
+    }
+    
+    .quote-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 80%;
+    }
+    
+    .quote {
+      font-size: 24px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInOut 5s linear infinite;
+    }
+    
+    @keyframes fadeInOut {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
       }
     }
   </style>
@@ -43,10 +70,34 @@
     </svg>
   </div>
 
-  <audio id="audioElement" controls autoplay>
+  <div class="quote-container">
+    <div class="quote" id="quote1">For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. - John 3:16</div>
+    <div class="quote" id="quote2">Trust in the LORD with all your heart, and do not lean on your own understanding. - Proverbs 3:5</div>
+    <div class="quote" id="quote3">The LORD is my shepherd; I shall not want. - Psalm 23:1</div>
+  </div>
+
+  <audio id="audioElement" controls autoplay preload="auto">
     <source src="https://archive.org/details/Classical_Sampler-9615/Kevin_MacLeod_-_Gymnopedie_No_1.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
+
+  <script>
+    const quotes = document.querySelectorAll(".quote");
+    let currentQuoteIndex = 0;
+
+    function cycleQuotes() {
+      quotes[currentQuoteIndex].style.opacity = 0;
+
+      currentQuoteIndex++;
+      if (currentQuoteIndex >= quotes.length) {
+        currentQuoteIndex = 0;
+      }
+
+      quotes[currentQuoteIndex].style.opacity = 1;
+    }
+
+    setInterval(cycleQuotes, 5000);
+  </script>
 
   <script>
     function generateRandomShape() {
@@ -81,6 +132,47 @@
     }
     
     generateShapes();
+
+    const shapes = document.querySelectorAll("polygon");
+    const containerWidth = document.querySelector(".art-container").offsetWidth;
+    const containerHeight = document.querySelector(".art-container").offsetHeight;
+
+    function moveShapes() {
+      shapes.forEach((shape) => {
+        const shapeWidth = shape.getBBox().width;
+        const shapeHeight = shape.getBBox().height;
+
+        const maxX = containerWidth - shapeWidth;
+        const maxY = containerHeight - shapeHeight;
+
+        let currentX = parseFloat(shape.getAttribute("data-x")) || 0;
+        let currentY = parseFloat(shape.getAttribute("data-y")) || 0;
+
+        const directionX = parseFloat(shape.getAttribute("data-direction-x")) || 1;
+        const directionY = parseFloat(shape.getAttribute("data-direction-y")) || 1;
+
+        currentX += 1 * directionX;
+        currentY += 1 * directionY;
+
+        if (currentX > maxX || currentX < 0) {
+          shape.setAttribute("data-direction-x", directionX * -1);
+          currentX += 1 * directionX;
+        }
+
+        if (currentY > maxY || currentY < 0) {
+          shape.setAttribute("data-direction-y", directionY * -1);
+          currentY += 1 * directionY;
+        }
+
+        shape.setAttribute("data-x", currentX);
+        shape.setAttribute("data-y", currentY);
+        shape.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      });
+
+      requestAnimationFrame(moveShapes);
+    }
+
+    moveShapes();
   </script>
 </body>
 </html>
