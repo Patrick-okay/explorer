@@ -1,193 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Impressive Webpage</title>
-  <style>
-    /* CSS styles for the webpage */
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: black;
-    }
-
-    #artSvg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .quote {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 24px;
-      font-family: 'Arial', sans-serif;
-      color: white;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-
-    .audio-bar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 60px;
-      background-color: #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #playButton {
-      background-color: #fff;
-      color: #333;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
+    <title>Lava Lamp</title>
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+        }
+        
+        #lava-lamp {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .lava-glob {
+            position: absolute;
+            background-color: red;
+            border-radius: 50%;
+        }
+        
+        .quote-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-  <!-- SVG container for the shapes -->
-  <svg id="artSvg"></svg>
-
-  <!-- Quote display -->
-  <div class="quote"></div>
-
-  <!-- Audio bar -->
-  <div class="audio-bar">
-    <audio id="audioElement" preload="auto">
-      <source src="https://patrick-okay.github.io/explorer/mahon.mp3" type="audio/mp3">
-      <source src="https://patrick-okay.github.io/explorer/mahon.ogg" type="audio/ogg">
-      Your browser does not support the audio element.
-    </audio>
-    <button id="playButton">Play</button>
-  </div>
-
-  <script>
-    const quotes = [
-      "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. - John 3:16",
-      "Trust in the LORD with all your heart and lean not on your own understanding. - Proverbs 3:5",
-      "The LORD is my shepherd, I lack nothing. - Psalm 23:1",
-      "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint. - Isaiah 40:31",
-      "I can do all this through him who gives me strength. - Philippians 4:13"
-    ];
-
-    let shapes = [];
-    let animationFrameId;
-    let isPlaying = false;
-
-    function RandomShape() {
-      const numPoints = Math.floor(Math.random() * 4) + 3;
-      const points = [];
-
-      for (let i = 0; i < numPoints; i++) {
-        const x = Math.floor(Math.random() * 100);
-        const y = Math.floor(Math.random() * 100);
-        points.push(`${x},${y}`);
-      }
-
-      return points.join(" ");
-    }
-
-    function generateRandomColor() {
-      const r = Math.floor(Math.random() * 256);
-      const g = Math.floor(Math.random() * 256);
-      const b = Math.floor(Math.random() * 256);
-      return `rgb(${r}, ${g}, ${b})`;
-    }
-
-    function generateShapes() {
-      const artSvg = document.getElementById("artSvg");
-      const svgWidth = artSvg.clientWidth;
-      const svgHeight = artSvg.clientHeight;
-
-      shapes.forEach(shape => artSvg.removeChild(shape));
-      shapes = [];
-
-      for (let i = 0; i < 100; i++) {
-        const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-        shape.setAttribute("points", RandomShape());
-        shape.setAttribute("fill", generateRandomColor());
-        shape.setAttribute("transform", `translate(${Math.random() * svgWidth}, ${Math.random() * svgHeight})`);
-        artSvg.appendChild(shape);
-        shapes.push(shape);
-      }
-    }
-
-    function moveShapes() {
-      const maxX = window.innerWidth;
-      const maxY = window.innerHeight;
-
-      shapes.forEach(shape => {
-        let x = parseFloat(shape.getAttribute("x")) || 0;
-        let y = parseFloat(shape.getAttribute("y")) || 0;
-
-        let dx = Math.random() * 10 - 5;
-        let dy = Math.random() * 10 - 5;
-
-        x += dx;
-        y += dy;
-
-        if (x < 0) {
-          x = 0;
-          dx = -dx;
-        } else if (x > maxX) {
-          x = maxX;
-          dx = -dx;
+    <div id="lava-lamp"></div>
+    <div class="quote-container">
+        <span id="quote"></span>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Array of Bible quotes
+        var bibleQuotes = [
+            "Quote 1",
+            "Quote 2",
+            "Quote 3"
+            // Add more quotes here
+        ];
+        
+        // Function to generate random values
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
         }
-
-        if (y < 0) {
-          y = 0;
-          dy = -dy;
-        } else if (y > maxY) {
-          y = maxY;
-          dy = -dy;
+        
+        // Function to create a lava glob
+        function createLavaGlob() {
+            var size = getRandom(20, 100);
+            var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var x = getRandom(0, window.innerWidth);
+            var y = getRandom(0, window.innerHeight);
+            
+            var $glob = $('<div class="lava-glob"></div>').css({
+                'width': size + 'px',
+                'height': size + 'px',
+                'background-color': color,
+                'left': x + 'px',
+                'top': y + 'px'
+            });
+            
+            $('#lava-lamp').append($glob);
+            
+            $glob.animate({
+                'left': getRandom(0, window.innerWidth),
+                'top': getRandom(0, window.innerHeight)
+            }, 4000, function() {
+                createLavaGlob();
+            });
         }
-
-        shape.setAttribute("x", x);
-        shape.setAttribute("y", y);
-        shape.setAttribute("fill", generateRandomColor());
-      });
-
-      if (isPlaying) {
-        animationFrameId = requestAnimationFrame(moveShapes);
-      }
-    }
-
-    function showRandomQuote() {
-      const quoteDiv = document.querySelector(".quote");
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      quoteDiv.textContent = quotes[randomIndex];
-    }
-
-    showRandomQuote();
-
-    const audioElement = document.getElementById("audioElement");
-
-    audioElement.addEventListener("canplay", () => {
-      audioElement.play();
-      isPlaying = true;
-      moveShapes();
-    });
-
-    const playButton = document.getElementById("playButton");
-
-    playButton.addEventListener("click", () => {
-      if (audioElement.paused) {
-        audioElement.play();
-        isPlaying = true;
-        moveShapes();
-      } else {
-        audioElement.pause();
-        isPlaying = false;
-        cancelAnimationFrame(animationFrameId);
-      }
-    });
-  </script>
+        
+        // Function to update the quote
+        function updateQuote() {
+            var quoteIndex = Math.floor(Math.random() * bibleQuotes.length);
+            $('#quote').text(bibleQuotes[quoteIndex]);
+        }
+        
+        // Function to play audio
+        function playAudio() {
+            var audio = new Audio('https://patrick-okay.github.io/explorer/mahon.mp3');
+            audio.play();
+        }
+        
+        // Function to handle window resize
+        function handleResize() {
+            $('.lava-glob').each(function() {
+                var newX = getRandom(0, window.innerWidth);
+                var newY = getRandom(0, window.innerHeight);
+                $(this).animate({
+                    'left': newX + 'px',
+                    'top': newY + 'px'
+                }, 1000);
+            });
+        }
+        
+        // Initialize the lava lamp
+        $(document).ready(function() {
+            $(window).resize(handleResize);
+            createLavaGlob();
+            updateQuote();
+            playAudio();
+        });
+    </script>
 </body>
 </html>
