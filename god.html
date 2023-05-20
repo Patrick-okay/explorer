@@ -1,111 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Complex Webpage with Animated Art</title>
+  <title>Impressive Webpage</title>
   <style>
+    /* CSS styles for the webpage */
     body {
-      background-color: #000000;
       margin: 0;
+      padding: 0;
       overflow: hidden;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
     }
 
-    .art-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-    }
-
-    .art-svg {
+    #artSvg {
+      position: absolute;
       width: 100%;
       height: 100%;
     }
 
-    polygon {
-      stroke: #ffffff;
-      stroke-width: 1px;
-      animation: oscillate 6s infinite alternate;
-      transform-origin: center;
-    }
-
-    @keyframes oscillate {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .quote-container {
-      position: fixed;
+    .quote {
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
-    .quote {
       font-size: 24px;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 
     .audio-bar {
       position: fixed;
       bottom: 0;
-      left: 0;
       width: 100%;
-      padding: 10px;
-      background-color: #333333;
+      height: 60px;
+      background-color: #333;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     #playButton {
-      background-color: #ffffff;
-      color: #000000;
+      background-color: #fff;
+      color: #333;
       border: none;
       padding: 10px 20px;
       font-size: 16px;
+      border-radius: 4px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="art-container">
-    <svg class="art-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" id="artSvg">
-      <!-- Shapes will be dynamically added here -->
-    </svg>
-  </div>
+  <!-- SVG container for the shapes -->
+  <svg id="artSvg"></svg>
 
-  <div class="quote-container">
-    <div class="quote">
-      <!-- Bible quotes will be dynamically added here -->
-    </div>
-  </div>
+  <!-- Quote display -->
+  <div class="quote"></div>
 
+  <!-- Audio bar -->
   <div class="audio-bar">
     <audio id="audioElement" preload="auto">
-      <source src="https://archive.org/details/Classical_Sampler-9615/Kevin_MacLeod_-_Gymnopedie_No_1.mp3" type="audio/mp3">
+      <source src="https://patrick-okay.github.io/explorer/mahon.mp3" type="audio/mp3">
+      <source src="https://patrick-okay.github.io/explorer/mahon.ogg" type="audio/ogg">
       Your browser does not support the audio element.
     </audio>
     <button id="playButton">Play</button>
   </div>
 
   <script>
-    const shapes = [];
     const quotes = [
-      "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. - John 3:16",
-      "Trust in the LORD with all your heart, and do not lean on your own understanding. - Proverbs 3:5",
-      "Be strong and courageous. Do not fear or be in dread of them, for it is the LORD your God who goes with you. He will not leave you or forsake you. - Deuteronomy 31:6",
-      "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint. - Isaiah 40:31"
+      "Bible Quote 1",
+      "Bible Quote 2",
+      "Bible Quote 3",
+      "Bible Quote 4",
+      "Bible Quote 5"
     ];
 
-    function generateRandomShape() {
+    let shapes = [];
+
+    function RandomShape() {
       const numPoints = Math.floor(Math.random() * 4) + 3;
       const points = [];
 
@@ -132,7 +105,7 @@
 
       for (let i = 0; i < 100; i++) {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-        shape.setAttribute("points", generateRandomShape());
+        shape.setAttribute("points", RandomShape());
         shape.setAttribute("fill", generateRandomColor());
 
         artSvg.appendChild(shape);
@@ -143,32 +116,38 @@
     generateShapes();
 
     function moveShapes() {
-      shapes.forEach((shape) => {
-        const maxX = window.innerWidth - shape.getBBox().width;
-        const maxY = window.innerHeight - shape.getBBox().height;
+      const maxX = window.innerWidth;
+      const maxY = window.innerHeight;
 
-        let currentX = parseFloat(shape.getAttribute("data-x")) || 0;
-        let currentY = parseFloat(shape.getAttribute("data-y")) || 0;
+      shapes.forEach(shape => {
+        let x = parseFloat(shape.getAttribute("x")) || 0;
+        let y = parseFloat(shape.getAttribute("y")) || 0;
 
-        const directionX = parseFloat(shape.getAttribute("data-direction-x")) || Math.random() > 0.5 ? 1 : -1;
-        const directionY = parseFloat(shape.getAttribute("data-direction-y")) || Math.random() > 0.5 ? 1 : -1;
+        let dx = Math.random() * 10 - 5;
+        let dy = Math.random() * 10 - 5;
 
-        currentX += 0.5 * directionX;
-        currentY += 0.5 * directionY;
+        x += dx;
+        y += dy;
 
-        if (currentX > maxX || currentX < 0) {
-          shape.setAttribute("data-direction-x", directionX * -1);
-          currentX += 0.5 * directionX;
+        if (x < 0) {
+          x = 0;
+          dx = -dx;
+        } else if (x > maxX) {
+          x = maxX;
+          dx = -dx;
         }
 
-        if (currentY > maxY || currentY < 0) {
-          shape.setAttribute("data-direction-y", directionY * -1);
-          currentY += 0.5 * directionY;
+        if (y < 0) {
+          y = 0;
+          dy = -dy;
+        } else if (y > maxY) {
+          y = maxY;
+          dy = -dy;
         }
 
-        shape.setAttribute("data-x", currentX);
-        shape.setAttribute("data-y", currentY);
-        shape.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        shape.setAttribute("x", x);
+        shape.setAttribute("y", y);
+        shape.setAttribute("fill", generateRandomColor());
       });
 
       requestAnimationFrame(moveShapes);
@@ -176,32 +155,22 @@
 
     moveShapes();
 
-    function cycleQuotes() {
-      const quoteElement = document.querySelector(".quote");
-      let currentIndex = 0;
-
-      setInterval(() => {
-        quoteElement.innerHTML = quotes[currentIndex];
-
-        currentIndex++;
-        if (currentIndex >= quotes.length) {
-          currentIndex = 0;
-        }
-      }, 5000);
+    function showRandomQuote() {
+      const quoteDiv = document.querySelector(".quote");
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteDiv.textContent = quotes[randomIndex];
     }
 
-    cycleQuotes();
+    showRandomQuote();
 
     const audioElement = document.getElementById("audioElement");
     const playButton = document.getElementById("playButton");
 
-    playButton.addEventListener("click", function() {
+    playButton.addEventListener("click", () => {
       if (audioElement.paused) {
         audioElement.play();
-        playButton.innerText = "Pause";
       } else {
         audioElement.pause();
-        playButton.innerText = "Play";
       }
     });
   </script>
