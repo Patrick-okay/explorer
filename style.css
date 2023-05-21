@@ -68,15 +68,18 @@ article {
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 article:hover {
   transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
+  color: #333;
   font-size: 24px;
+  margin-top: 0;
   margin-bottom: 10px;
 }
 
@@ -88,23 +91,37 @@ footer {
   font-size: 14px;
 }
 
-/* Additional styles */
 a {
   color: #333;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #666;
 }
 
 .about-me {
   text-align: justify;
-  line-height: 1.5;
-  border-bottom: 1px solid #ddd;
+  line-height: 1.6;
+  border-bottom: 1px solid #ccc;
 }
 
 .services ul {
-  list-style: disc;
   padding-left: 20px;
+  list-style: disc;
 }
 
 .contact p {
   margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  article {
+    flex-basis: 100%;
+  }
 }
