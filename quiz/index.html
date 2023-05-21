@@ -11,38 +11,6 @@
             cursor: pointer;
         }
         
-        .country {
-            position: absolute;
-            cursor: pointer;
-        }
-        
-        #canada {
-            top: 200px;
-            left: 250px;
-            width: 300px;
-            height: 200px;
-            background-color: #0066CC;
-            opacity: 0.7;
-        }
-        
-        #usa {
-            top: 250px;
-            left: 450px;
-            width: 300px;
-            height: 200px;
-            background-color: #FF0000;
-            opacity: 0.7;
-        }
-        
-        #mexico {
-            top: 400px;
-            left: 400px;
-            width: 200px;
-            height: 200px;
-            background-color: #00CC00;
-            opacity: 0.7;
-        }
-        
         #question {
             font-size: 20px;
             margin-bottom: 10px;
@@ -93,11 +61,11 @@
             var x = event.clientX;
             var y = event.clientY;
             
-            if (x >= 250 && x <= 550 && y >= 200 && y <= 400) {
+            if (x >= 162 && x <= 690 && y >= 127 && y <= 442) {
                 return "Canada";
-            } else if (x >= 450 && x <= 750 && y >= 250 && y <= 450) {
+            } else if (x >= 437 && x <= 746 && y >= 337 && y <= 554) {
                 return "United States";
-            } else if (x >= 400 && x <= 600 && y >= 400 && y <= 600) {
+            } else if (x >= 394 && x <= 562 && y >= 459 && y <= 604) {
                 return "Mexico";
             }
             
@@ -108,9 +76,11 @@
 <body onload="init()">
     <div id="question"></div>
     <div id="map">
-        <div id="canada" class="country"></div>
-        <div id="usa" class="country"></div>
-        <div id="mexico" class="country"></div>
+        <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+            <path id="canada" fill="#0066CC" d="M162,127L353,163L499,127L617,177L690,231L682,442L419,442L162,399Z"/>
+            <path id="usa" fill="#FF0000" d="M437,337L554,337L746,362L730,554L437,554Z"/>
+            <path id="mexico" fill="#00CC00" d="M394,459L394,540L562,604L562,459Z"/>
+        </svg>
     </div>
 </body>
 </html>
