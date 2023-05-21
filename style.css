@@ -125,3 +125,16 @@ a:hover {
     flex-basis: 100%;
   }
 }
+
+/* Additional Styling */
+.profile-picture {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
