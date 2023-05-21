@@ -116,12 +116,10 @@ a:hover {
   margin: 5px 0;
 }
 
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
-  }
-
-  article {
-    flex-basis: 100%;
-  }
+/* New CSS styles for profile picture */
+.profile-picture {
+  display: block;
+  margin: 20px auto;
+  max-width: 200px;
+  border-radius: 50%;
 }
