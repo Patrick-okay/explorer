@@ -112,13 +112,32 @@ a:hover {
   list-style: disc;
 }
 
-.contact {
-  text-align: center;
+.contact p {
+  margin: 5px 0;
 }
 
-.contact iframe {
-  width: 100%;
-  max-width: 600px;
-  height: 500px;
-  border: none;
+.profile-picture {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  article {
+    flex-basis: 100%;
+  }
+
+  .profile-picture img {
+    width: 150px;
+    height: 150px;
+  }
 }
