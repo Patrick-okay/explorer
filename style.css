@@ -1,12 +1,16 @@
+/* Reset styles */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* Global styles */
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
   padding: 20px;
   background-color: #f2f2f2;
+  color: #333;
 }
 
 header {
@@ -30,8 +34,6 @@ nav {
 
 nav ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
 }
@@ -59,7 +61,7 @@ main {
   justify-content: space-between;
 }
 
-section {
+article {
   flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
   padding: 20px;
@@ -69,14 +71,13 @@ section {
   transition: transform 0.3s ease;
 }
 
-section:hover {
+article:hover {
   transform: translateY(-5px);
 }
 
 h2 {
-  color: #333;
   font-size: 24px;
-  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 footer {
@@ -87,6 +88,7 @@ footer {
   font-size: 14px;
 }
 
+/* Additional styles */
 a {
   color: #333;
   text-decoration: none;
@@ -94,22 +96,15 @@ a {
 
 .about-me {
   text-align: justify;
+  line-height: 1.5;
+  border-bottom: 1px solid #ddd;
 }
 
 .services ul {
+  list-style: disc;
   padding-left: 20px;
 }
 
 .contact p {
   margin: 5px 0;
-}
-
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
-  }
-  
-  section {
-    flex-basis: 100%;
-  }
 }
