@@ -1,5 +1,6 @@
 /* Reset Styles */
-html, body, h1, h2, p, ul, li {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -10,27 +11,34 @@ body {
 }
 
 /* Global Styles */
-header, nav, main, footer {
-  margin: 20px auto;
+.container {
   max-width: 800px;
+  margin: 20px auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 nav ul {
   list-style-type: none;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 nav ul li {
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 a {
   text-decoration: none;
   color: #333;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #4CAF50;
 }
 
 /* Article Styles */
@@ -38,8 +46,8 @@ a {
   margin-bottom: 30px;
   padding: 30px;
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile-picture {
@@ -50,11 +58,13 @@ a {
 .profile-picture img {
   max-width: 200px;
   border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .services ul {
   list-style-type: disc;
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .contact-form {
@@ -74,8 +84,17 @@ label {
 input[type="text"], input[type="email"], textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -85,6 +104,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -94,4 +114,5 @@ button:hover {
 #submission-status {
   margin-top: 10px;
   font-weight: bold;
+  color: #4CAF50;
 }
