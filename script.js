@@ -1,31 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var form = document.getElementById("contact-form");
-  var submitButton = document.getElementById("submit-button");
-  var successMessage = document.getElementById("success-message");
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+  const submitBtn = document.querySelector('#submit-btn');
+  const statusMessage = document.querySelector('#submission-status');
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusMessage.textContent = 'Sending...';
 
-    submitButton.disabled = true;
-    submitButton.innerHTML = "Submitting...";
-
-    var formData = new FormData(form);
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-    })
-      .then(function (response) {
-        if (response.ok) {
-          submitButton.style.display = "none";
-          successMessage.style.display = "block";
-        } else {
-          throw new Error("Form submission failed.");
-        }
-      })
-      .catch(function (error) {
-        console.error("Form submission error:", error);
-        submitButton.disabled = false;
-        submitButton.innerHTML = "Submit";
-      });
+    if (validateForm()) {
+      // Simulating form submission delay
+      setTimeout(function() {
+        form.reset();
+        submitBtn.disabled = false;
+        statusMessage.textContent = 'Message sent successfully!';
+      }, 2000);
+    } else {
+      submitBtn.disabled = false;
+      statusMessage.textContent = 'Please fill in all fields.';
+    }
   });
+
+  function validateForm() {
+    const name = document.querySelector('#name').value.trim();
+    const email = document.querySelector('#email').value.trim();
+    const message = document.querySelector('#message').value.trim();
+
+    if (name === '' || email === '' || message === '') {
+      return false;
+    }
+
+    return true;
+  }
 });
