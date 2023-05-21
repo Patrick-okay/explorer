@@ -61,7 +61,7 @@ main {
   justify-content: space-between;
 }
 
-article {
+section {
   flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
   padding: 20px;
@@ -71,7 +71,7 @@ article {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-article:hover {
+section:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -116,10 +116,12 @@ a:hover {
   margin: 5px 0;
 }
 
-/* New CSS styles for profile picture */
-.profile-picture {
-  display: block;
-  margin: 20px auto;
-  max-width: 200px;
-  border-radius: 50%;
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  section {
+    flex-basis: 100%;
+  }
 }
