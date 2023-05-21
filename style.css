@@ -2,6 +2,7 @@
 html, body, h1, h2, p, ul, li {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -16,6 +17,7 @@ header, nav, main, footer {
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 nav ul {
@@ -31,6 +33,11 @@ nav ul li {
 a {
   text-decoration: none;
   color: #333;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #555;
 }
 
 /* Article Styles */
@@ -38,8 +45,8 @@ a {
   margin-bottom: 30px;
   padding: 30px;
   background-color: #fff;
-  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .profile-picture {
@@ -69,13 +76,18 @@ label {
   display: block;
   font-weight: bold;
   color: #555;
+  margin-bottom: 5px;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"],
+input[type="email"],
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
 }
 
 button {
@@ -85,6 +97,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -94,4 +107,5 @@ button:hover {
 #submission-status {
   margin-top: 10px;
   font-weight: bold;
+  color: #555;
 }
