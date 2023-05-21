@@ -61,7 +61,7 @@ main {
   justify-content: space-between;
 }
 
-section {
+article {
   flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
   padding: 20px;
@@ -71,7 +71,7 @@ section {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-section:hover {
+article:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -121,7 +121,7 @@ a:hover {
     flex-direction: column;
   }
 
-  section {
+  article {
     flex-basis: 100%;
   }
 }
